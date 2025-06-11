@@ -1,35 +1,51 @@
 theme = "gruvbox"
 
 [editor]
-mouse        = false
-shell        = ["/bin/fish", "-c"]
-line-number  = "relative"
-auto-format  = false
-bufferline   = "always"
-popup-border = "all"
+auto-format             = false
+bufferline              = "multiple"
+end-of-line-diagnostics = "hint"
+line-number             = "relative"
+mouse                   = false
+popup-border            = "all"
+shell                   = ["/bin/fish", "-c"]
 
-[editor.statusline]
-left   = ["mode", "spinner"]
-center = ["version-control", "file-type", "read-only-indicator"]
-right  = ["diagnostics", "selections", "register", "position", "position-percentage", "file-encoding"]
-
-[editor.lsp]
-display-inlay-hints = false
+# Disable auto-pairs using an empty table instead of a boolean.
+[editor.auto-pairs]
 
 [editor.cursor-shape]
-normal = "block"
 insert = "bar"
+normal = "block"
 select = "underline"
 
 [editor.file-picker]
 hidden = false
 
-# Disable auto-pairs by configuring this empty table instead of the boolean in
-# the `editor` section. It's a TOML style preference for me.
-[editor.auto-pairs]
-
 [editor.indent-guides]
 render = true
 
+[editor.inline-diagnostics]
+cursor-line = "hint"
+
+[editor.lsp]
+display-progress-messages = true
+
 [editor.soft-wrap]
 enable = true
+
+[editor.statusline]
+left = [
+  "mode",
+  "spinner"
+]
+center = [
+  "file-name",
+  "read-only-indicator"
+]
+right = [
+  "diagnostics",
+  "selections",
+  "register",
+  "position",
+  "position-percentage",
+  "file-encoding"
+]
