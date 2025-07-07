@@ -8,9 +8,12 @@ set --global --export CARGO_HOME ~/.local/cargo
 set --global --export GOPATH ~/.local/gopath
 
 # Editors.
-if type --quiet --no-functions hx
+if type --query --no-functions hx
     set --global --export VISUAL hx
     set --global --export EDITOR hx
+else if type --query --no-functions helix
+    set --global --export VISUAL helix
+    set --global --export EDITOR helix
 end
 
 set --local 1password_ssh_socket ~/.1password/agent.sock
