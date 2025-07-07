@@ -2,15 +2,13 @@ theme = "gruvbox"
 
 [editor]
 auto-format             = false
+auto-pairs              = false
 bufferline              = "multiple"
 end-of-line-diagnostics = "hint"
 line-number             = "relative"
 mouse                   = false
 popup-border            = "all"
 shell                   = ["/bin/fish", "-c"]
-
-# Disable auto-pairs using an empty table instead of a boolean.
-[editor.auto-pairs]
 
 [editor.cursor-shape]
 insert = "bar"
@@ -24,7 +22,7 @@ hidden = false
 render = true
 
 [editor.inline-diagnostics]
-cursor-line = "hint"
+cursor-line = "error"
 
 [editor.lsp]
 display-progress-messages = true
