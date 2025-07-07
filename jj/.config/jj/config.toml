@@ -6,3 +6,6 @@ email = "me@matthewsanabria.dev"
 --when.repositories = ["~/oxide"]
 [--scope.user]
 email = "matthew.sanabria@oxide.computer"
+
+[templates]
+git_push_bookmark = '"sudomateo/" ++ change_id.short()'
