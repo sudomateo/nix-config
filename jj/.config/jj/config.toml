@@ -7,5 +7,13 @@ email = "me@matthewsanabria.dev"
 [--scope.user]
 email = "matthew.sanabria@oxide.computer"
 
+[ui]
+default-command = ["log"]
+
 [templates]
-git_push_bookmark = '"sudomateo/" ++ change_id.short()'
+# Customize the bookmark name when running `jj git push --change`.
+git_push_bookmark = "'sudomateo/' ++ change_id.short()"
+
+[template-aliases]
+# Use relative timestamps.
+"format_timestamp(timestamp)" = "timestamp.ago()"
