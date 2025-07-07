@@ -1,0 +1,21 @@
+= Matthew Sanabria's Dotfiles
+
+Various configuration files to set up a system the way I like it.
+
+== Requirements
+
+* https://www.gnu.org/software/stow/[`stow`]
+
+== Installation
+
+Use `stow` to symlink the desired dotfiles.
+
+[source,shell]
+----
+stow --target ~ fish
+stow --target ~ ghostty
+stow --target ~ git
+stow --target ~ helix
+stow --target ~ jj
+stow --target ~ ssh
+----
