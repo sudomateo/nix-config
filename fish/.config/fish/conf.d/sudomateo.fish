@@ -8,7 +8,7 @@ set --global --export CARGO_HOME ~/.local/cargo
 set --global --export GOPATH ~/.local/gopath
 
 # Editors.
-if type --no-functions hx
+if type --quiet --no-functions hx
     set --global --export VISUAL hx
     set --global --export EDITOR hx
 end
@@ -17,6 +17,8 @@ set --local 1password_ssh_socket ~/.1password/agent.sock
 if test -e $1password_ssh_socket -a -S $1password_ssh_socket
     set --global --export SSH_AUTH_SOCK $1password_ssh_socket
 end
+
+set --global --export COLORTERM truecolor
 
 fish_add_path --global \
     ~/.local/bin \
