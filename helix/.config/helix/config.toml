@@ -18,8 +18,23 @@ select = "underline"
 [editor.file-picker]
 hidden = false
 
+[editor.whitespace.render]
+space = "none"
+tab = "all"
+nbsp = "none"
+nnbsp = "none"
+newline = "none"
+
+[editor.whitespace.characters]
+space = "·"
+nbsp = "⍽"
+nnbsp = "␣"
+tab = "→"
+newline = "⏎"
+tabpad = "·"
+
 [editor.indent-guides]
-render = true
+render = false
 
 [editor.inline-diagnostics]
 cursor-line = "error"
