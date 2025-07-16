@@ -16,7 +16,7 @@ window-padding-y   = 5
 confirm-close-surface   = false
 cursor-click-to-move    = false
 mouse-hide-while-typing = true
-window-new-tab-position = end
+window-new-tab-position = current
 
 # TODO: Revisit this once supported.
 # link =
