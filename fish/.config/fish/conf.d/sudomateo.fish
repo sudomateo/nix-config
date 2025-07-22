@@ -21,6 +21,7 @@ if test -e $1password_ssh_socket -a -S $1password_ssh_socket
     set --global --export SSH_AUTH_SOCK $1password_ssh_socket
 end
 
+# For Windows Terminal.
 set --global --export COLORTERM truecolor
 
 fish_add_path --global \
