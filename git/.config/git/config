@@ -6,9 +6,10 @@
 [pull]
 	rebase = true
 
-[includeIf "gitdir:~/oxide"]
-	path = oxide
-
 # Use SSH URLs instead of HTTPS URLs for GitHub.
 [url "git@github.com:"]
 	insteadOf = https://github.com/
+
+# Include Oxide configuration.
+[includeIf "gitdir:~/src/oxide"]
+	path = oxide
