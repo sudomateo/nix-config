@@ -1,6 +1,6 @@
 command = /bin/fish --login --interactive
 
-theme = light:GruvboxDark,dark:GruvboxDark
+theme = light:Gruvbox Light,dark:Gruvbox Dark
 
 font-family            = Berkeley Mono
 font-style             = Regular
