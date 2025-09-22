@@ -3,7 +3,7 @@ name  = "Matthew Sanabria"
 email = "me@matthewsanabria.dev"
 
 [[--scope]]
---when.repositories = ["~/oxide"]
+--when.repositories = ["~/src/oxide"]
 [--scope.user]
 email = "matthew.sanabria@oxide.computer"
 
