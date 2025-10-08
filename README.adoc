@@ -12,6 +12,7 @@ Use `stow` to symlink the desired dotfiles.
 
 [source,shell]
 ----
+stow --target ~ bin
 stow --target ~ fish
 stow --target ~ ghostty
 stow --target ~ git
