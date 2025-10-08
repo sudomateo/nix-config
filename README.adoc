@@ -20,4 +20,5 @@ stow --target ~ helix
 stow --target ~ jj
 stow --target ~ nushell
 stow --target ~ ssh
+stow --target ~ systemd
 ----

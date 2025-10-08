@@ -1,0 +1,9 @@
+[Unit]
+Description=Sync Helix theme with COSMIC theme
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/env nu %h/bin/helix-theme-sync.nu
+
+[Install]
+WantedBy=default.target
