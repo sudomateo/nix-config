@@ -17,5 +17,6 @@ stow --target ~ ghostty
 stow --target ~ git
 stow --target ~ helix
 stow --target ~ jj
+stow --target ~ nushell
 stow --target ~ ssh
 ----
