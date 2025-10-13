@@ -13,6 +13,7 @@ adjust-cell-width  = 0%
 window-padding-x   = 5
 window-padding-y   = 5
 
+app-notifications       = no-clipboard-copy,config-reload
 confirm-close-surface   = false
 cursor-click-to-move    = false
 mouse-hide-while-typing = true
