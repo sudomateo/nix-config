@@ -6,26 +6,12 @@
 * Always respect language-specific formatters (e.g., `go fmt`, `cargo fmt`,
   `prettier`) even if they exceed 80 characters.
 
-## Committing Code
+## Version Control
 
-Use `jj` (Jujutsu) instead of `git` for version control actions. Here's a table
-showing how popular `git` commands translate into `jj`.
+Use `jj` (Jujutsu) instead of `git` for version control actions (e.g.,
+committing code.)
 
-| Use Case                                                  | Git Command               | Jujutsu Command     |
-| --------------------------------------------------------- | ------------------------- | ------------------- |
-| Finish work on the current change and start a new change. | `git commit -a`           | `jj commit`         | 
-| Check out a named revision, or branch, to examine source. | `git checkout <revision>` | `jj new <revision>` | 
-| Show working copy status.                                 | `git status`              | `jj st`             | 
-| Show diff of the current change.                          | `git diff`                | `jj diff`           |
-| Show log graph of the current commit.                     | `git log`                 | `jj log`            |
-| List branches (i.e., bookmarks).                          | `git branch`              | `jj bookmark`       |
-| Edit commit message of the working copy change.           | N/A                       | `jj describe`       |
-| Edit commit message of the parent change.                 | `git commit --amend`      | `jj describe @-`    |
-| Squash changes into the parent revision.                  | `git rebase -i`           | `jj squash`         |
-| Push to a remote repository.                              | `git push`                | `jj git push`       |
-| Discard a change.                                         | `git reset --hard`        | `jj abandon`        |
-
-### Commit Message
+## Commit Messages
 
 Commit messages must use the following format.
 
@@ -44,3 +30,4 @@ In this format:
 * `${body}` is text summarizing the change. Keep things concise and don't put
 trivial changes in the text, readers can see the diff for the actual changes.
 Keep in mind the reader will be a human.
+* `${amp_thread_url}` is the Amp thread URL that was used to commit the changes.
