@@ -34,9 +34,7 @@ ${type}: ${description}
 
 ${body}
 
-${footer}
 Amp-Thread: ${amp_thread_url}
-Co-authored-by: Amp <amp@ampcode.com>
 ```
 
 In this format:
@@ -46,5 +44,3 @@ In this format:
 * `${body}` is text summarizing the change. Keep things concise and don't put
 trivial changes in the text, readers can see the diff for the actual changes.
 Keep in mind the reader will be a human.
-* `${footer}` is zero or more footers (e.g., `Co-authored-by: FirstName LastName
-<firstname.lastname@example.com>`).
