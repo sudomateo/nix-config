@@ -15,6 +15,7 @@ window-padding-y   = 5
 
 split-divider-color        = #000000
 unfocused-split-fill       = #000000
+unfocused-split-opacity    = 0.80
 
 app-notifications          = no-clipboard-copy,config-reload
 confirm-close-surface      = false
