@@ -1,7 +1,0 @@
-# This file is implicitly included as a .gitignore.
-
-# A scratch directory for arbitrary things.
-.scratch
-
-# Claude Code.
-**/.claude/settings.local.json

@@ -1,0 +1,41 @@
+{
+  lib,
+  pkgs,
+  ...
+}:
+let
+  isLinux = pkgs.stdenv.isLinux;
+in
+{
+  imports = [
+    ./direnv.nix
+    ./ghostty.nix
+    ./git.nix
+    ./helix.nix
+    ./jujutsu.nix
+    ./nushell.nix
+    ./ssh.nix
+  ];
+
+  home.username = "sudomateo";
+  home.stateVersion = "24.11";
+
+  home.packages =
+    with pkgs;
+    [
+      _1password-cli
+      gh
+      nodejs
+      k9s
+      kubelogin-oidc
+      terraform
+      tree
+    ]
+    ++ lib.optionals isLinux [
+    ];
+
+  xdg.configFile = {
+    "amp/settings.json".source = ./amp-settings.json;
+    "amp/AGENTS.md".source = ./amp-AGENTS.md;
+  };
+}
