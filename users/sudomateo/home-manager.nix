@@ -13,6 +13,7 @@ in
     ./git.nix
     ./helix.nix
     ./jujutsu.nix
+    ./k9s.nix
     ./nushell.nix
     ./ssh.nix
   ];
@@ -26,7 +27,7 @@ in
       _1password-cli
       gh
       nodejs
-      k9s
+      kind
       kubelogin-oidc
       terraform
       tree
