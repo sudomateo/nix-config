@@ -18,10 +18,14 @@
 
   environment.shells = [ pkgs.nushell ];
 
+  system.defaults.NSGlobalDomain.AppleICUForce24HourTime = true;
+  system.defaults.NSGlobalDomain.AppleIconAppearanceTheme = "RegularAutomatic";
+  system.defaults.NSGlobalDomain.AppleInterfaceStyleSwitchesAutomatically = true;
   system.defaults.NSGlobalDomain.KeyRepeat = 2;
   system.defaults.NSGlobalDomain.InitialKeyRepeat = 15;
 
   system.activationScripts.postActivation.text = ''
+    sudo -u sudomateo defaults write NSGlobalDomain AppleAccentColor -int 1
     sudo -u sudomateo \
       /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
   '';
