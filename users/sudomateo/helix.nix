@@ -1,9 +1,13 @@
-{ ... }:
+{ pkgs, helix, ... }:
 {
   programs.helix = {
     enable = true;
+    package = helix.packages.${pkgs.system}.default;
     settings = {
-      theme = "gruvbox";
+      theme = {
+        dark = "gruvbox";
+        light = "gruvbox_light";
+      };
       editor = {
         auto-format = false;
         auto-pairs = false;
