@@ -10,8 +10,10 @@
 
       "--scope" = [
         {
-          "--when".repositories = [ "~/src/oxide" ];
-          "--scope".user.email = "matthew.sanabria@oxide.computer";
+          "--when" = {
+            repositories = [ "~/src/oxide" ];
+          };
+          user.email = "matthew.sanabria@oxide.computer";
         }
       ];
 
