@@ -1,24 +1,57 @@
-= Matthew Sanabria's Dotfiles
+= Matthew Sanabria's Nix Configuration
 
-Various configuration files to set up a system the way I like it.
+Nix configuration to manage multiple machines declaratively.
 
 == Requirements
 
-* https://www.gnu.org/software/stow/[`stow`]
+* https://github.com/DeterminateSystems/nix-installer[Determinate Nix]
 
-== Installation
+== Machines
 
-Use `stow` to symlink the desired dotfiles.
+[cols="1,1,1"]
+|===
+| Name | System | Type
+
+| ms-macbook-air
+| aarch64-darwin
+| nix-darwin
+|===
+
+== Usage
+
+Enter the development shell.
 
 [source,shell]
 ----
-stow --target ~ bin
-stow --target ~ fish
-stow --target ~ ghostty
-stow --target ~ git
-stow --target ~ helix
-stow --target ~ jj
-stow --target ~ nushell
-stow --target ~ ssh
-stow --target ~ systemd
+nix develop
+----
+
+Apply the configuration for the current machine.
+
+[source,shell]
+----
+apply
+----
+
+Or, without entering the shell first.
+
+[source,shell]
+----
+nix develop --command apply
+----
+
+Format all Nix files.
+
+[source,shell]
+----
+nix fmt
+----
+
+== Bootstrap
+
+For a new macOS machine, run the following to bootstrap.
+
+[source,shell]
+----
+nix run nix-darwin -- switch --flake .#ms-macbook-air
 ----
