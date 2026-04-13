@@ -38,6 +38,7 @@ systemFunc {
       home-manager.backupFileExtension = "bak";
       home-manager.extraSpecialArgs = {
         inherit pkgs-unstable;
+        helix = inputs.helix;
       };
       home-manager.users.${user} = import ../users/${user}/home-manager.nix;
     }
