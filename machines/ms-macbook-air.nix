@@ -1,7 +1,5 @@
 { pkgs, ... }:
 {
-  nixpkgs.hostPlatform = "aarch64-darwin";
-
   # Let Determinate Nix handle Nix configuration.
   determinateNix = {
     enable = true;
@@ -9,6 +7,12 @@
       eval-cores = 0;
       extra-experimental-features = [
         "build-time-fetch-tree"
+      ];
+      extra-trusted-substituters = [
+        "https://cache.flox.dev"
+      ];
+      extra-trusted-public-keys = [
+        "flox-cache-public-1:7F4OyH7ZCnFhcze3fJdfyXYLQw/aV7GEed86nQ7IsOs="
       ];
     };
   };
