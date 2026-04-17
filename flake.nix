@@ -2,6 +2,7 @@
   description = "Matthew Sanabria's nix configuration.";
 
   inputs = {
+    flox.url = "github:flox/flox/latest";
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0";
     nixpkgs-unstable.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
     determinate = {
@@ -30,6 +31,7 @@
       determinate,
       nix-darwin,
       home-manager,
+      flox,
       ...
     }@inputs:
     let

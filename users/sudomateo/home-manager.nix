@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  flox,
   ...
 }:
 let
@@ -25,10 +26,15 @@ in
     with pkgs;
     [
       _1password-cli
+      btop
+      curl
+      flox
       gh
+      jq
       nodejs
       kind
       kubelogin-oidc
+      ripgrep
       terraform
       tree
     ]

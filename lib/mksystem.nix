@@ -23,12 +23,14 @@ let
       inputs.home-manager.nixosModules.home-manager;
 in
 systemFunc {
-  inherit system;
   specialArgs = {
     inherit pkgs-unstable;
   };
   modules = [
-    { nixpkgs.config.allowUnfree = true; }
+    {
+      nixpkgs.hostPlatform = system;
+      nixpkgs.config.allowUnfree = true;
+    }
     ../machines/${name}.nix
     ../users/${user}/${if darwin then "darwin" else "nixos"}.nix
     hmModule
@@ -39,6 +41,7 @@ systemFunc {
       home-manager.extraSpecialArgs = {
         inherit pkgs-unstable;
         helix = inputs.helix;
+        flox = inputs.flox.packages.${system}.default;
       };
       home-manager.users.${user} = import ../users/${user}/home-manager.nix;
     }
