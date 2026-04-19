@@ -15,6 +15,7 @@ in
     ./helix.nix
     ./jujutsu.nix
     ./k9s.nix
+    ./mise.nix
     ./nushell.nix
     ./ssh.nix
   ];
