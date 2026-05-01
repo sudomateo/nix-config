@@ -5,7 +5,7 @@
     settings = {
       user = {
         name = "Matthew Sanabria";
-        email = "me@matthewsanabria.dev";
+        email = "me@matthewsanabria.com";
       };
 
       "--scope" = [
