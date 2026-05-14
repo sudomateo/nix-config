@@ -48,8 +48,13 @@
     {
       darwinConfigurations.ms-macbook-air = mkSystem "ms-macbook-air" {
         system = "aarch64-darwin";
-        user = "sudomateo";
+        username = "sudomateo";
         darwin = true;
+      };
+
+      nixosConfigurations.ms-fw-desktop = mkSystem "ms-fw-desktop" {
+        system = "x86_64-linux";
+        username = "ms";
       };
 
       formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt);

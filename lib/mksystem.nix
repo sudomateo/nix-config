@@ -6,7 +6,7 @@
 name:
 {
   system,
-  user,
+  username,
   darwin ? false,
 }:
 
@@ -24,7 +24,7 @@ let
 in
 systemFunc {
   specialArgs = {
-    inherit pkgs-unstable;
+    inherit pkgs-unstable username;
   };
   modules = [
     {
@@ -32,18 +32,17 @@ systemFunc {
       nixpkgs.config.allowUnfree = true;
     }
     ../machines/${name}.nix
-    ../users/${user}/${if darwin then "darwin" else "nixos"}.nix
     hmModule
     {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
       home-manager.backupFileExtension = "bak";
       home-manager.extraSpecialArgs = {
-        inherit pkgs-unstable;
+        inherit pkgs-unstable username;
         helix = inputs.helix;
         flox = inputs.flox.packages.${system}.default;
       };
-      home-manager.users.${user} = import ../users/${user}/home-manager.nix;
+      home-manager.users.${username} = import ../home;
     }
   ]
   ++ (

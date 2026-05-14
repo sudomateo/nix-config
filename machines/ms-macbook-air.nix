@@ -1,5 +1,10 @@
 { pkgs, ... }:
 {
+  users.users.sudomateo = {
+    name = "sudomateo";
+    home = "/Users/sudomateo";
+  };
+
   # Let Determinate Nix handle Nix configuration.
   determinateNix = {
     enable = true;

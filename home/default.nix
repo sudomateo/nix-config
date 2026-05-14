@@ -2,6 +2,7 @@
   lib,
   pkgs,
   flox,
+  username,
   ...
 }:
 let
@@ -15,12 +16,11 @@ in
     ./helix.nix
     ./jujutsu.nix
     ./k9s.nix
-    ./mise.nix
     ./nushell.nix
     ./ssh.nix
   ];
 
-  home.username = "sudomateo";
+  home.username = username;
   home.stateVersion = "24.11";
 
   home.packages =
