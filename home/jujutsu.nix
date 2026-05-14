@@ -1,7 +1,4 @@
-{ ... }:
-let
-  identity = import ./identity.nix;
-in
+{ identity, ... }:
 {
   programs.jujutsu = {
     enable = true;
@@ -11,7 +8,7 @@ in
       "--scope" = [
         {
           "--when" = {
-            repositories = [ "~/Projects/Oxide" ];
+            repositories = [ identity.oxide.workDir ];
           };
           user.email = identity.oxide.email;
         }

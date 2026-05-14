@@ -15,7 +15,19 @@ Nix configuration to manage multiple machines declaratively.
 | ms-macbook-air
 | aarch64-darwin
 | nix-darwin
+
+| ms-fw-desktop
+| x86_64-linux
+| NixOS
 |===
+
+== Layout
+
+* `flake.nix` — entry point, inputs, and the `apply` dev shell
+* `lib/` — `mksystem.nix` (system builder) and `identity.nix` (personal data)
+* `modules/` — `common.nix`, `darwin.nix`, `nixos.nix`
+* `home/` — home-manager modules (one file per program)
+* `machines/<host>/` — per-machine overrides and hardware config
 
 == Usage
 
@@ -26,11 +38,22 @@ Enter the development shell.
 nix develop
 ----
 
-Apply the configuration for the current machine.
+Apply the configuration for the current machine.  The `apply` script only
+rebuilds the local machine; it does not deploy to remote hosts.
 
 [source,shell]
 ----
 apply
+----
+
+Apply a different host's configuration explicitly (useful for testing a
+config locally before deploying it).  Extra arguments are forwarded to the
+underlying `darwin-rebuild` / `nixos-rebuild`.
+
+[source,shell]
+----
+apply ms-fw-desktop
+apply ms-fw-desktop --show-trace
 ----
 
 Or, without entering the shell first.
@@ -44,14 +67,35 @@ Format all Nix files.
 
 [source,shell]
 ----
-nix fmt
+nix fmt .
 ----
+
+== State Versions
+
+`system.stateVersion` (NixOS / nix-darwin) and `home.stateVersion`
+(home-manager) are recorded once when a host is first installed and should
+*not* be bumped without first reading the corresponding release notes.  They
+exist so option defaults remain stable across upgrades; changing them can
+silently alter system behavior.
 
 == Bootstrap
 
-For a new macOS machine, run the following to bootstrap.
+For a new macOS machine, run the following to bootstrap.  The URL pins
+nix-darwin to the same 0.1 series used by `flake.nix` for reproducibility.
 
 [source,shell]
 ----
-nix run nix-darwin -- switch --flake .#ms-macbook-air
+nix run https://flakehub.com/f/nix-darwin/nix-darwin/0.1 -- \
+  switch --flake .#ms-macbook-air
+----
+
+For a new NixOS machine, first boot the official NixOS installer, then clone
+this repository onto the target machine and generate a hardware config for
+the host (see `machines/ms-fw-desktop/hardware.nix` for an example — that
+file was produced by `nixos-generate-config` and is host-specific).  Once a
+machine module exists, run:
+
+[source,shell]
+----
+sudo nixos-rebuild switch --flake .#ms-fw-desktop
 ----

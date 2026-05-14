@@ -1,8 +1,8 @@
-{ pkgs, helix, ... }:
+{ helix, ... }:
 {
   programs.helix = {
     enable = true;
-    package = helix.packages.${pkgs.system}.default;
+    package = helix;
     settings = {
       theme = {
         dark = "gruvbox";

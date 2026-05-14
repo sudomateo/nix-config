@@ -1,11 +1,7 @@
-{ ... }:
-let
-  identity = import ./identity.nix;
-in
+{ identity, ... }:
 {
   programs.git = {
     enable = true;
-    signing.format = null;
     ignores = [
       ".scratch"
       "**/.claude/settings.local.json"
@@ -19,11 +15,11 @@ in
     };
     includes = [
       {
-        condition = "gitdir:~/Projects/Oxide/";
-        contents = {
-          user = identity.oxide // {
-            useConfigOnly = true;
-          };
+        condition = "gitdir:${identity.oxide.workDir}/";
+        contents.user = {
+          name = identity.oxide.name;
+          email = identity.oxide.email;
+          useConfigOnly = true;
         };
       }
     ];

@@ -6,6 +6,7 @@
 }:
 {
   imports = [
+    ./amp
     ./direnv.nix
     ./ghostty.nix
     ./git.nix
@@ -28,16 +29,11 @@
     flox
     gh
     jq
-    nodejs
     kind
     kubelogin-oidc
+    nodejs
     ripgrep
     terraform
     tree
   ];
-
-  xdg.configFile = {
-    "amp/settings.json".source = ./amp-settings.json;
-    "amp/AGENTS.md".source = ./amp-AGENTS.md;
-  };
 }
