@@ -1,10 +1,9 @@
-{ pkgs, ... }:
 {
-  users.users.sudomateo = {
-    name = "sudomateo";
-    home = "/Users/sudomateo";
-  };
-
+  pkgs,
+  username,
+  ...
+}:
+{
   # Let Determinate Nix handle Nix configuration.
   determinateNix = {
     enable = true;
@@ -34,36 +33,10 @@
   system.defaults.NSGlobalDomain.InitialKeyRepeat = 15;
 
   system.activationScripts.postActivation.text = ''
-    sudo -u sudomateo defaults write NSGlobalDomain AppleAccentColor -int 1
-    sudo -u sudomateo \
+    sudo -u ${username} defaults write NSGlobalDomain AppleAccentColor -int 1
+    sudo -u ${username} \
       /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
   '';
 
-  system.primaryUser = "sudomateo";
-
-  homebrew = {
-    enable = true;
-    casks = [
-      "1password"
-      "appcleaner"
-      "claude"
-      "discord"
-      "element"
-      "ghostty"
-      "karabiner-elements"
-      "linear"
-      "logi-options+"
-      "microsoft-teams"
-      "mullvad-vpn"
-      "obs"
-      "orbstack"
-      "slack"
-      "tunnelblick"
-      "zoom"
-    ];
-    onActivation.autoUpdate = true;
-    onActivation.cleanup = "uninstall";
-  };
-
-  system.stateVersion = 5;
+  system.primaryUser = username;
 }

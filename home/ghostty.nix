@@ -7,6 +7,8 @@ in
     enable = true;
     package = if isDarwin then null else pkgs.ghostty;
     settings = {
+      # On macOS, launch via a login zsh so PAM-loaded environment (e.g.
+      # /etc/zprofile sourcing nix-darwin) is inherited, then exec into nushell.
       command = if isDarwin then "zsh -lc 'exec nu --interactive'" else "nu --interactive";
       theme = "light:Gruvbox Light,dark:Gruvbox Dark";
       font-family = "Berkeley Mono";

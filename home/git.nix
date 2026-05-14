@@ -1,4 +1,7 @@
 { ... }:
+let
+  identity = import ./identity.nix;
+in
 {
   programs.git = {
     enable = true;
@@ -8,9 +11,7 @@
       "**/.claude/settings.local.json"
     ];
     settings = {
-      user = {
-        name = "Matthew Sanabria";
-        email = "me@matthewsanabria.com";
+      user = identity.personal // {
         useConfigOnly = true;
       };
       pull.rebase = true;
@@ -18,11 +19,9 @@
     };
     includes = [
       {
-        condition = "gitdir:~/src/oxide/";
+        condition = "gitdir:~/Projects/Oxide/";
         contents = {
-          user = {
-            name = "Matthew Sanabria";
-            email = "matthew.sanabria@oxide.computer";
+          user = identity.oxide // {
             useConfigOnly = true;
           };
         };

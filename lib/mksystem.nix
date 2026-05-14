@@ -11,23 +11,21 @@ name:
 }:
 
 let
+  platform = if darwin then "darwin" else "nixos";
   systemFunc = if darwin then inputs.nix-darwin.lib.darwinSystem else nixpkgs.lib.nixosSystem;
-  hmModule =
-    if darwin then
-      inputs.home-manager.darwinModules.home-manager
-    else
-      inputs.home-manager.nixosModules.home-manager;
+  hmModule = inputs.home-manager."${platform}Modules".home-manager;
+  determinateModule = inputs.determinate."${platform}Modules".default;
 in
 systemFunc {
   specialArgs = {
     inherit username;
   };
   modules = [
-    {
-      nixpkgs.hostPlatform = system;
-      nixpkgs.config.allowUnfree = true;
-    }
-    ../machines/${name}.nix
+    { nixpkgs.hostPlatform = system; }
+    ../modules/common
+    (../modules + "/${platform}")
+    ../machines/${name}
+    determinateModule
     hmModule
     {
       home-manager.useGlobalPkgs = true;
@@ -40,11 +38,5 @@ systemFunc {
       };
       home-manager.users.${username} = import ../home;
     }
-  ]
-  ++ (
-    if darwin then
-      [ inputs.determinate.darwinModules.default ]
-    else
-      [ inputs.determinate.nixosModules.default ]
-  );
+  ];
 }

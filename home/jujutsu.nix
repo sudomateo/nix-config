@@ -1,19 +1,19 @@
 { ... }:
+let
+  identity = import ./identity.nix;
+in
 {
   programs.jujutsu = {
     enable = true;
     settings = {
-      user = {
-        name = "Matthew Sanabria";
-        email = "me@matthewsanabria.com";
-      };
+      user = identity.personal;
 
       "--scope" = [
         {
           "--when" = {
-            repositories = [ "~/src/oxide" ];
+            repositories = [ "~/Projects/Oxide" ];
           };
-          user.email = "matthew.sanabria@oxide.computer";
+          user.email = identity.oxide.email;
         }
       ];
 

@@ -33,7 +33,6 @@
       supportedSystems = [
         "aarch64-darwin"
         "x86_64-linux"
-        "aarch64-linux"
       ];
       forAllSystems = f: nixpkgs-unstable.lib.genAttrs supportedSystems f;
       mkSystem = import ./lib/mksystem.nix {
@@ -60,6 +59,7 @@
         let
           pkgs = import nixpkgs-unstable { inherit system; };
           isDarwin = pkgs.stdenv.isDarwin;
+          rebuild = if isDarwin then "darwin-rebuild" else "nixos-rebuild";
         in
         {
           default = pkgs.mkShellNoCC {
@@ -69,17 +69,11 @@
                 runtimeInputs = pkgs.lib.optionals isDarwin [
                   nix-darwin.packages.${system}.darwin-rebuild
                 ];
-                text =
-                  if isDarwin then
-                    ''
-                      sudo darwin-rebuild switch \
-                        --flake ".#''${1:-$(hostname -s)}"
-                    ''
-                  else
-                    ''
-                      sudo nixos-rebuild switch \
-                        --flake ".#''${1:-$(hostname -s)}"
-                    '';
+                text = ''
+                  echo "flake.lock last modified: $(date -r flake.lock)"
+                  sudo ${rebuild} switch \
+                    --flake ".#''${1:-$(hostname -s)}"
+                '';
               })
               self.formatter.${system}
             ];
