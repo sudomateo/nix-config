@@ -22,7 +22,7 @@
         "determinate-nixd-x86_64-linux": "determinate-nixd-x86_64-linux",
         "nix": "nix",
         "nixpkgs": [
-          "nixpkgs"
+          "nixpkgs-unstable"
         ]
       },
       "locked": {
@@ -347,12 +347,12 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1775710090,
-        "narHash": "sha256-ar3rofg+awPB8QXDaFJhJ2jJhu+KqN/PRCXeyuXR76E=",
-        "rev": "4c1018dae018162ec878d42fec712642d214fdfa",
-        "revCount": 977467,
+        "lastModified": 1778443072,
+        "narHash": "sha256-zi7/fsqM/kFdNuED//4WOCUtezGtKKqRNORjMvfwjnA=",
+        "rev": "da5ad661ba4e5ef59ba743f0d112cbc30e474f32",
+        "revCount": 995699,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.1.977467%2Brev-4c1018dae018162ec878d42fec712642d214fdfa/019d75d9-1186-76c1-baa5-93baafa37a8d/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.1.995699%2Brev-da5ad661ba4e5ef59ba743f0d112cbc30e474f32/019e1cce-50fe-7f80-9c18-f129a8d93b7c/source.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -373,20 +373,6 @@
         "ref": "stable",
         "repo": "nixpkgs",
         "type": "github"
-      }
-    },
-    "nixpkgs_3": {
-      "locked": {
-        "lastModified": 1775811116,
-        "narHash": "sha256-t+HZK42pB6N+i5RGbuy7Xluez/VvWbembBdvzsc23Ss=",
-        "rev": "54170c54449ea4d6725efd30d719c5e505f1c10e",
-        "revCount": 910894,
-        "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.2511.910894%2Brev-54170c54449ea4d6725efd30d719c5e505f1c10e/019d7b19-7fde-7bc1-abb6-b008c057159e/source.tar.gz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://flakehub.com/f/NixOS/nixpkgs/0"
       }
     },
     "pre-commit-hooks": {
@@ -419,7 +405,6 @@
         "helix": "helix",
         "home-manager": "home-manager",
         "nix-darwin": "nix-darwin",
-        "nixpkgs": "nixpkgs_3",
         "nixpkgs-unstable": "nixpkgs-unstable"
       }
     },

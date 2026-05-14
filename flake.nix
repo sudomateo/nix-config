@@ -3,11 +3,10 @@
 
   inputs = {
     flox.url = "github:flox/flox/latest";
-    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0";
     nixpkgs-unstable.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
     determinate = {
       url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     nix-darwin = {
       url = "https://flakehub.com/f/nix-darwin/nix-darwin/0.1";
@@ -26,12 +25,8 @@
   outputs =
     {
       self,
-      nixpkgs,
       nixpkgs-unstable,
-      determinate,
       nix-darwin,
-      home-manager,
-      flox,
       ...
     }@inputs:
     let
@@ -40,9 +35,10 @@
         "x86_64-linux"
         "aarch64-linux"
       ];
-      forAllSystems = f: nixpkgs.lib.genAttrs supportedSystems f;
+      forAllSystems = f: nixpkgs-unstable.lib.genAttrs supportedSystems f;
       mkSystem = import ./lib/mksystem.nix {
-        inherit nixpkgs inputs;
+        nixpkgs = nixpkgs-unstable;
+        inherit inputs;
       };
     in
     {
@@ -57,12 +53,12 @@
         username = "ms";
       };
 
-      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt);
+      formatter = forAllSystems (system: nixpkgs-unstable.legacyPackages.${system}.nixfmt);
 
       devShells = forAllSystems (
         system:
         let
-          pkgs = import nixpkgs { inherit system; };
+          pkgs = import nixpkgs-unstable { inherit system; };
           isDarwin = pkgs.stdenv.isDarwin;
         in
         {

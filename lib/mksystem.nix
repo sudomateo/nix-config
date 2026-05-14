@@ -11,10 +11,6 @@ name:
 }:
 
 let
-  pkgs-unstable = import inputs.nixpkgs-unstable {
-    inherit system;
-    config.allowUnfree = true;
-  };
   systemFunc = if darwin then inputs.nix-darwin.lib.darwinSystem else nixpkgs.lib.nixosSystem;
   hmModule =
     if darwin then
@@ -24,7 +20,7 @@ let
 in
 systemFunc {
   specialArgs = {
-    inherit pkgs-unstable username;
+    inherit username;
   };
   modules = [
     {
@@ -38,7 +34,7 @@ systemFunc {
       home-manager.useUserPackages = true;
       home-manager.backupFileExtension = "bak";
       home-manager.extraSpecialArgs = {
-        inherit pkgs-unstable username;
+        inherit username;
         helix = inputs.helix;
         flox = inputs.flox.packages.${system}.default;
       };
