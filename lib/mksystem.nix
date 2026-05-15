@@ -9,7 +9,10 @@
 let
   identity = import ./identity.nix;
 
-  systemFunc = if darwin then inputs.nix-darwin.lib.darwinSystem else inputs.nixpkgs.lib.nixosSystem;
+  # The system is built from `nixpkgs-unstable`; `nixpkgs` is the stable
+  # input, used only to expose `pkgs-stable` for selective per-package use.
+  systemFunc =
+    if darwin then inputs.nix-darwin.lib.darwinSystem else inputs.nixpkgs-unstable.lib.nixosSystem;
   platformModule = if darwin then ../modules/darwin.nix else ../modules/nixos.nix;
   hmModule =
     if darwin then
@@ -21,9 +24,12 @@ let
       inputs.determinate.darwinModules.default
     else
       inputs.determinate.nixosModules.default;
+
+  # Stable Nixpkgs, exposed as the `pkgs-stable` argument in any module.
+  pkgs-stable = import inputs.nixpkgs { inherit system; };
 in
 systemFunc {
-  specialArgs = { inherit username identity; };
+  specialArgs = { inherit username identity pkgs-stable; };
   modules = [
     { nixpkgs.hostPlatform = system; }
     ../modules/common.nix
@@ -36,7 +42,7 @@ systemFunc {
       home-manager.useUserPackages = true;
       home-manager.backupFileExtension = "bak";
       home-manager.extraSpecialArgs = {
-        inherit username identity;
+        inherit username identity pkgs-stable;
         helix = inputs.helix.packages.${system}.default;
         flox = inputs.flox.packages.${system}.default;
       };

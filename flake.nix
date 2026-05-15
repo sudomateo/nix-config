@@ -3,23 +3,31 @@
 
   # Inputs use FlakeHub semver pins where possible; github: only when a
   # project doesn't publish to FlakeHub.
+  #
+  # `nixpkgs` tracks the current stable release (FlakeHub `0`) and is
+  # exposed as `pkgs-stable` via specialArgs for selective per-package use.
+  # `nixpkgs-unstable` tracks rolling unstable (FlakeHub `0.1`) and drives
+  # the system: it is the source of `pkgs` everywhere and what nix-darwin /
+  # home-manager / determinate / helix follow, since those flakes are
+  # pinned to their unstable lines.
   inputs = {
-    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
+    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0";
+    nixpkgs-unstable.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
     determinate = {
       url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     nix-darwin = {
       url = "https://flakehub.com/f/nix-darwin/nix-darwin/0.1";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     home-manager = {
       url = "https://flakehub.com/f/nix-community/home-manager/0.1";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     helix = {
       url = "https://flakehub.com/f/helix-editor/helix/0.1";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     flox.url = "github:flox/flox/latest";
   };
