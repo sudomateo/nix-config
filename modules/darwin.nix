@@ -7,7 +7,7 @@
   };
   system.primaryUser = username;
 
-  # Nix.  Determinate Nix manages /etc/nix/nix.conf for us.
+  # Nix. Determinate Nix manages /etc/nix/nix.conf for us.
   determinateNix = {
     enable = true;
     customSettings = {
@@ -20,7 +20,7 @@
     };
   };
 
-  # Shells.  nix-darwin uses zsh for its own scripts.
+  # Shells. nix-darwin uses zsh for its own scripts.
   programs.zsh.enable = true;
   environment.shells = [ pkgs.nushell ];
 
@@ -44,7 +44,7 @@
       /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
   '';
 
-  # Homebrew.  Casks shared across all Darwin machines; per-machine extras can
+  # Homebrew. Casks shared across all Darwin machines; per-machine extras can
   # be appended in the machine module.
   homebrew = {
     enable = true;
