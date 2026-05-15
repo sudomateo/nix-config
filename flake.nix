@@ -42,7 +42,7 @@
       darwinConfigurations.ms-macbook-air = mkSystem {
         name = "ms-macbook-air";
         system = "aarch64-darwin";
-        username = "sudomateo";
+        username = "ms";
         darwin = true;
       };
 
